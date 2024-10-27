@@ -1,5 +1,8 @@
 ---
+import { Personas } from "astro:db"
+import { db } from "astro:db"
 
+const personas = await db.select().from(Personas)
 ---
 
 <html lang="en">
@@ -12,5 +15,6 @@
 	</head>
 	<body>
 		<h1>Astro</h1>
+		{ personas.map(p => <p>{p.nombres} {p.apellidos}</p>) }
 	</body>
 </html>
